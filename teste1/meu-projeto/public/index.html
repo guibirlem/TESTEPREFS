@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Computadores</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <div class="nav">
@@ -26,9 +27,35 @@
             <button type="submit">Salvar</button>
         </form>
     </div>
-    <div id="computers-list">
-        <!-- lista dos computadores -->
+    <div id="computers-list" class="floors-container">
+        <div class="floor">
+            <h2>Primeiro Andar</h2>
+            <div id="primeiro-andar"></div>
+        </div>
+        <div class="floor">
+            <h2>Segundo Andar</h2>
+            <div id="segundo-andar"></div>
+        </div>
+        <div class="floor">
+            <h2>Terceiro Andar</h2>
+            <div id="terceiro-andar"></div>
+        </div>
+        <div class="floor">
+            <h2>Quarto Andar</h2>
+            <div id="quarto-andar"></div>
+        </div>
     </div>
+    
+    
+    <footer>
+        <div class="footer">
+            <p>Desenvolvido por Guilherme Birlem
+                <a href="https://github.com/guibirlem" target="_blank"> <i class="fa-brands fa-github"></i> </a>
+                <a href="https://www.linkedin.com/in/guilherme-birlem-machado-2112a6267/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            </p>
+        </div>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 </html>

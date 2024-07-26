@@ -15,9 +15,6 @@ function saveComputer(event) {
     const andar = document.getElementById('andar').value;
 
     const computer = { nome, ip, andar };
-    let computers = JSON.parse(localStorage.getItem('computers')) || [];
-    computers.push(computer);
-    localStorage.setItem('computers', JSON.stringify(computers));
 
     fetch('/add-computer', {
         method: 'POST',
@@ -26,38 +23,88 @@ function saveComputer(event) {
         },
         body: JSON.stringify(computer)
     })
-    .then(response => response.text())
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(text); });
+        }
+        return response.text();
+    })
     .then(data => {
         console.log(data);
         loadComputers();
     })
-    .catch(error => console.error('Erro:', error));
+    .catch(error => alert(error.message));
 
     document.getElementById('computer-form').reset();
     document.getElementById('form-container').classList.add('hidden');
 }
 
 function loadComputers() {
-    const computersList = document.getElementById('computers-list');
-    computersList.innerHTML = '';
+    const primeiroAndarList = document.getElementById('primeiro-andar');
+    const segundoAndarList = document.getElementById('segundo-andar');
+    const terceiroAndarList = document.getElementById('terceiro-andar');
+    const quartoAndarList = document.getElementById('quarto-andar');
 
-    let computers = JSON.parse(localStorage.getItem('computers')) || [];
-    computers.forEach((computer, index) => {
-        const computerDiv = document.createElement('div');
-        computerDiv.classList.add('computer');
-        computerDiv.innerHTML = `
-            <p><strong>Nome:</strong> ${computer.nome}</p>
-            <p><strong>IP:</strong> ${computer.ip}</p>
-            <p><strong>Andar:</strong> ${computer.andar}</p>
-            <button onclick="deleteComputer(${index})">Excluir</button>
-        `;
-        computersList.appendChild(computerDiv);
-    });
+    primeiroAndarList.innerHTML = '';
+    segundoAndarList.innerHTML = '';
+    terceiroAndarList.innerHTML = '';
+    quartoAndarList.innerHTML = '';
+
+    fetch('/get-computers')
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text); });
+            }
+            return response.json();
+        })
+        .then(data => {
+            data.forEach((computer, index) => {
+                const computerDiv = document.createElement('div');
+                computerDiv.classList.add('computer');
+                computerDiv.innerHTML = `
+                    <p><strong>Nome:</strong> ${computer.nome}</p>
+                    <p><strong>IP:</strong> ${computer.ip}</p>
+                    <p><strong>Andar:</strong> ${computer.andar}</p>
+                    <button onclick="deleteComputer(${index})">Excluir</button>
+                `;
+                switch (computer.andar) {
+                    case '1':
+                        primeiroAndarList.appendChild(computerDiv);
+                        break;
+                    case '2':
+                        segundoAndarList.appendChild(computerDiv);
+                        break;
+                    case '3':
+                        terceiroAndarList.appendChild(computerDiv);
+                        break;
+                    case '4':
+                        quartoAndarList.appendChild(computerDiv);
+                        break;
+                    default:
+                        break;
+                }
+            });
+        })
+        .catch(error => console.error('Erro:', error));
 }
 
 function deleteComputer(index) {
-    let computers = JSON.parse(localStorage.getItem('computers')) || [];
-    computers.splice(index, 1);
-    localStorage.setItem('computers', JSON.stringify(computers));
-    loadComputers();
+    fetch('/delete-computer', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ index })
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(text); });
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        loadComputers();
+    })
+    .catch(error => alert(error.message));
 }
