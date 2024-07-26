@@ -1,0 +1,97 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+    padding: 10px 0;
+}
+
+button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #777;
+}
+
+.hidden {
+    display: none;
+}
+
+#form-container {
+    margin: 70px 20px 20px 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label, input, select, button {
+    margin-bottom: 10px;
+}
+
+#computers-list {
+    margin: 70px 20px 20px 20px;
+}
+body {
+    background: url('prefs.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; 
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floors-container {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 60px; 
+}
+
+.floor {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 20%;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.floor h2 {
+    text-align: center;
+}
+
+.computer {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: #000; 
+}
