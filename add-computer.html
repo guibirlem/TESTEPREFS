@@ -3,62 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Computador</title>
+    <title>Adicionar computador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: url('https://correiodolitoralrs.com.br/wp-content/uploads/2022/01/WhatsApp-Image-2021-06-24-at-14.04.34.jpeg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #333;
         }
 
         form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            background-color: rgba(255, 255, 255, 0.9); /* transparencia no formulario para enxergar melhor o fundo*/
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
             box-sizing: border-box;
+            max-width: 90%;
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
         }
 
-        input {
+        input, select {
             width: calc(100% - 20px);
-            padding: 8px;
-            margin-bottom: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px;
             box-sizing: border-box;
+            font-size: 16px;
+            color: #333;
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #28a745;
+            padding: 12px;
+            background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 18px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
+
+        button:active {
+            background-color: #004494;
+        }
+        footer {
+         background-color: #333;
+         color: #fff;
+         text-align: center;
+         padding: 10px 0;
+         position: fixed;
+          bottom: 0;
+          width: 100%;
+        }
+
+        .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }       
     </style>
 </head>
 <body>
@@ -77,6 +106,14 @@
         </select>
         <button type="submit">Adicionar Computador</button>
     </form>
+    <footer>
+        <div class="footer">
+            <p>Desenvolvido por Guilherme Birlem
+                <a href="https://github.com/guibirlem" target="_blank"> <i class="fa-brands fa-github"></i> </a>
+                <a href="https://www.linkedin.com/in/guilherme-birlem-machado-2112a6267/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+            </p>
+        </div>
+    </footer>
 
     <script>
         document.getElementById('computer-form').addEventListener('submit', function(event) {
@@ -88,7 +125,7 @@
 
             const computador = { nome, ip, andar };
             //MUDAR IP CASO SEJA OUTRO
-            fetch('http://192.168.0.116:3000/add-computer', {
+            fetch('http://10.0.21.11:3000/add-computer', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -101,10 +138,5 @@
                 document.getElementById('computer-form').reset();
             })
             .catch(error => console.error('Erro:', error));
-        });//curl -X POST http://10.0.21.11:3000/add-computer -H "Content-Type: application/json" -d '{"nome": "Computador1", "ip": "192.168.1.101", "andar": "1"}'
-
-    </script>
-
-    
-</body>
-</html>
+        });
+        //curl -X POST http://10.0.21.11:3000/add-computer

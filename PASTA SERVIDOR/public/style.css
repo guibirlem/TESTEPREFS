@@ -1,6 +1,7 @@
 body {
-    background-color: black;
-    color: white;
+    background: url('prefs.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff; 
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -12,8 +13,9 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #333;
+    background: rgba(51, 51, 51, 0.8); /*transparencia em cima */
     padding: 10px 0;
+    border-radius: 0 0 20px 20px;
 }
 
 button {
@@ -22,6 +24,7 @@ button {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 20px;
 }
 
 button:hover {
@@ -45,22 +48,24 @@ label, input, select, button {
     margin-bottom: 10px;
 }
 
+input, select {
+    border-radius: 20px;
+    padding: 10px;
+}
+
 #computers-list {
     margin: 70px 20px 20px 20px;
 }
-body {
-    background: url('prefs.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff; 
-}
+
 footer {
-    background-color: #333;
+    background: rgba(51, 51, 51, 0.8); /* deixar transparente*/
     color: #fff;
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    border-radius: 20px 20px 0 0;
 }
 
 .footer {
@@ -80,7 +85,8 @@ footer {
     padding: 10px;
     width: 20%;
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
 }
 
 .floor h2 {
@@ -91,7 +97,7 @@ footer {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    color: #000; 
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
 }
