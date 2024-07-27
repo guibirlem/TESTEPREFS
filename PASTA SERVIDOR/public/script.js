@@ -58,14 +58,14 @@ function loadComputers() {
             return response.json();
         })
         .then(data => {
-            data.forEach((computer, index) => {
+            data.forEach(computer => {
                 const computerDiv = document.createElement('div');
                 computerDiv.classList.add('computer');
                 computerDiv.innerHTML = `
                     <p><strong>Nome:</strong> ${computer.nome}</p>
                     <p><strong>IP:</strong> ${computer.ip}</p>
                     <p><strong>Andar:</strong> ${computer.andar}</p>
-                    <button onclick="deleteComputer(${index})">Excluir</button>
+                    <button onclick="deleteComputer('${encodeURIComponent(computer.nome)}', '${encodeURIComponent(computer.ip)}', '${encodeURIComponent(computer.andar)}')">Excluir</button>
                 `;
                 switch (computer.andar) {
                     case '1':
@@ -88,19 +88,15 @@ function loadComputers() {
         .catch(error => console.error('Erro:', error));
 }
 
-function deleteComputer(index) {
-    fetch('/delete-computer', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ index })
+function deleteComputer(nome, ip, andar) {
+    fetch(`/delete-computer/${encodeURIComponent(nome)}/${encodeURIComponent(ip)}/${encodeURIComponent(andar)}`, {
+        method: 'DELETE'
     })
     .then(response => {
         if (!response.ok) {
             return response.text().then(text => { throw new Error(text); });
         }
-        return response.json();
+        return response.text();
     })
     .then(data => {
         console.log(data);
