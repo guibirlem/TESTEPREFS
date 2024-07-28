@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'));
 
-// Função para carregar os computadores do arquivo
+// aqui é onde é feito a leitura do txt 
 const loadComputersFromFile = () => {
     try {
         const data = fs.readFileSync('computers.txt', 'utf8');
@@ -23,7 +23,7 @@ const loadComputersFromFile = () => {
     }
 };
 
-// Função para salvar os computadores no arquivo
+// aqui é onde são feitos os salvamentos de computadores
 const saveComputersToFile = (computers) => {
     const data = computers.map(({ nome, ip, andar }) => `Nome: ${nome}, IP: ${ip}, Andar: ${andar}`).join('\n');
     fs.writeFileSync('computers.txt', data, 'utf8');

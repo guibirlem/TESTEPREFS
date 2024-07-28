@@ -86,7 +86,7 @@ function loadComputers() {
             });
         })
         .catch(error => console.error('Erro:', error));
-}
+} 
 
 function deleteComputer(nome, ip, andar) {
     fetch(`/delete-computer/${encodeURIComponent(nome)}/${encodeURIComponent(ip)}/${encodeURIComponent(andar)}`, {
