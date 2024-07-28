@@ -110,7 +110,7 @@
         <div class="footer">
             <p>Desenvolvido por Guilherme Birlem
                 <a href="https://github.com/guibirlem" target="_blank"> <i class="fa-brands fa-github"></i> </a>
-                <a href="https://www.linkedin.com/in/guilherme-birlem-machado-2112a6267/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.linkedin.com/in/guibirlem/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
             </p>
         </div>
     </footer>
@@ -137,6 +137,9 @@
             })
             .then(response => {
                 console.log('Resposta recebida:', response);
+                if (!response.ok) {
+                    throw new Error('Erro na resposta da rede');
+                }
                 return response.text();
             })
             .then(data => {
@@ -144,8 +147,12 @@
                 alert(data);
                 document.getElementById('computer-form').reset();
             })
-            .catch(error => console.error('Erro:', error));
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro: ' + error.message);
+            });
         });
+        //curl -X POST http://10.0.21.11:3000/add-computer
     </script>
 </body>
 </html>
